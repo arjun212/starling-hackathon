@@ -1,0 +1,19 @@
+{
+  "name": "monzo",
+  "version": "1.0.0",
+  "description": "A Test Monzo App",
+  "main": "acquire.js",
+  "dependencies": {
+    "request"     : "2.35.x" ,
+    "open"        : "0.0.x"  ,
+    "http-server" : "0.x"
+    },
+  "devDependencies": {},
+  "scripts": {
+    /* start defaults to server.js */
+    /*"start" : server.js*/
+    "test"    : "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arjun Muhunthan",
+  "license": "ISC"
+}
