@@ -4,11 +4,12 @@
   "description": "A dynamic heatmap showing user transactions",
   "main": "",
   "dependencies": {
-    "http-server" : "0.x"
+    "http-server" : "0.x"    ,
+    "express"     : "4.15.x"
     },
   "devDependencies": {},
   "scripts": {
-    "start": "http-server",
+    "start": "http-server || node api/api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arjun Muhunthan",
