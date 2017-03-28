@@ -9,7 +9,7 @@
     },
   "devDependencies": {},
   "scripts": {
-    "start": "http-server || node api/api.js",
+    "start": "node api/api.js | http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arjun Muhunthan",

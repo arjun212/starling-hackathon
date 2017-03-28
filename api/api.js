@@ -3,14 +3,14 @@ var request = require( 'request' ) ;
 
 var app = express() ;
  
-app.get('/oauth/success', function (req, res) {
+app.get('/api/oauth/success', function (req, res) {
   res.send('Auth Was a Success') ;
 
   console.log( req ) ;
 }) ;
 
 
-app.get('/oauth', authCallback) ;
+app.get('/api/oauth', authCallback) ;
  
 app.listen(8000)
 
