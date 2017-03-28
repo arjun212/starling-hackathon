@@ -1,0 +1,16 @@
+{
+  "name": "MAS-Starling-Hackathon",
+  "version": "1.0.0",
+  "description": "A dynamic heatmap showing user transactions",
+  "main": "",
+  "dependencies": {
+    "http-server" : "0.x"
+    },
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arjun Muhunthan",
+  "license": "MIT"
+}

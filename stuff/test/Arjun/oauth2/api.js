@@ -26,22 +26,39 @@ Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwM
 var client_id = 'oauthclient_00009Ila3HV0mDr9V0TEBd' ;
 var client_secret = 'XzLnJsrFUxtYSzlOkIrOcCO9P817PMCiYYGwWtIFXC' ;
 var redirect_uri = '127.0.0.1:8000/oauth/success' ;
-var grant_type = 'authorization_code' ;
+
+var url = 'https://api.getmondo.co.uk/oauth2/token' ;
 
 function authCallback(req, res) 
 {
 
 var oauth = {
- 'grant_type'    : grant_type     ,
+ 'grant_type'    : req.query.grant_type || 'authorization_code' ,
  'client_id'     : client_id      ,
  'client_secret' : client_secret  ,
  'redirect_uri'  : redirect_uri   ,
- 'code'          : req.query.code
+ [req.query.grant_type === 'refresh_token' ? 'refresh_token'         : 'code']        :
+  req.query.grant_type === 'refresh_token' ? req.query.refresh_token : req.query.code
 }
 
-request.post( { 
-	'url'   : url   ,
-	'oauth' : oauth
-} ) ;
+
+
+request.post( 
+	{ 
+		'url'   : url   ,
+		'form' : oauth
+	}, 
+	(err, response, body) => 
+	{
+	    if (!err && response.statusCode === 200) 
+	    {
+	      res.status(200).json( JSON.parse( body ) ) ;
+	    } 
+	    else 
+	    {
+	      res.status(response.statusCode).json( { message: body } ) ; 
+	    }
+	}
+) ;
 
 }
