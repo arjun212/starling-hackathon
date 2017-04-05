@@ -11,7 +11,7 @@ Access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwM
 */
 
 var client_id = 'oauthclient_00009Ila3HV0mDr9V0TEBd' ;
-var redirect_uri = '127.0.0.1:8000/oauth' ;
+var redirect_uri = 'http://127.0.0.1:8000/api/oauth' ;
 var response_type = 'code' ;
 var state = 'MAS' ;
 

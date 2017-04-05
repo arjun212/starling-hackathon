@@ -32,6 +32,8 @@ var url = 'https://api.getmondo.co.uk/oauth2/token' ;
 function authCallback(req, res) 
 {
 
+console.log(req);
+
 var oauth = {
  'grant_type'    : req.query.grant_type || 'authorization_code' ,
  'client_id'     : client_id      ,
