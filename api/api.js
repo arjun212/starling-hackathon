@@ -4,7 +4,11 @@ var request = require( 'request' ) ;
 var app = express() ;
  
 app.get('/api/oauth', authCallback) ;
- 
+
+app.get('/api/test', testCallback) ;
+
+app.get('/api/random', randomString) ;
+
 app.listen(8000)
 
 
@@ -14,6 +18,22 @@ var client_secret = 'XzLnJsrFUxtYSzlOkIrOcCO9P817PMCiYYGwWtIFXC+lkzyKfTyzW7iZv/m
 var redirect_uri = 'http://127.0.0.1:8000/api/oauth' ;
 
 var url = 'https://api.getmondo.co.uk/oauth2/token' ;
+
+function testCallback(req, res) {
+    console.log(req);
+}
+
+function randomString(req, res) {
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var stringLength = 5;
+
+    var randomString = Array.apply(null, new Array(stringLength)).map(function () {
+        return possible[Math.floor(Math.random() * possible.length)];
+    }).join('');
+
+    console.log(randomString);
+    return randomString;
+}
 
 function authCallback(req, res) 
 {
@@ -28,8 +48,6 @@ var oauth = {
 }
 
 console.log(oauth);
-
-
 
 request.post( 
 	{ 
