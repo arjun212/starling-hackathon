@@ -1,6 +1,5 @@
 {
-  "name": "ionic-web-chat",
+  "name": "ionic2-web-chat",
   "app_id": "",
-  "v2": true,
-  "typescript": true
+  "v2": true
 }

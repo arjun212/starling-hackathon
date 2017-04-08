@@ -1,11 +1,11 @@
 <html ng-app="app">
 
 <head>
-  <script src="bundle.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/custom.css">
+  <script src="bundle.js"></script>
 </head>
 
 <nav class="navbar navbar-default">
@@ -22,25 +22,80 @@
 
 <body ng-controller="appController">
 
-<div class="col-lg-10 col-lg-offset-1 text-left">
-  <div class="list-group">
-    <a href="#" class="list-group-item disabled">
-      Cras justo odio
-      <span class="badge">£12.99</span>
-    </a>
-    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-    <a href="#" class="list-group-item">Morbi leo risus</a>
-    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-    <a href="#" class="list-group-item">Vestibulum at eros</a>
+  <div class="col-lg-10 col-lg-offset-1 text-left">
+
   </div>
-</div>
 
-<div class="col-lg-10 col-lg-offset-1 text-left">
-  {{text}}
+  <div class="col-lg-10 col-lg-offset-1 text-left">
+    <div class="panel panel-default">
+      <div class="panel-heading">Your recent transactions</div>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>You have new transactions since your last visit!</strong>
+      </div>
+      <div class="list-group">
 
-  MAS Is The Best
-  <p>1 + 2 = {{1 + 2}}</p>
-</div>
+        <div ng-repeat="transaction in transactions">
+
+          <div ng-switch="transaction.receipts">
+
+            <div ng-switch-when="True">
+              <a href="/transaction/{{transaction.id}}" class="list-group-item">
+                <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
+                {{transaction.merchant}}
+                <span class="badge">£{{transaction.value}}</span>
+              </a>
+            </div>
+
+            <div ng-switch-default>
+            <button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">
+              <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
+              {{transaction.merchant}}
+              <span class="badge">£{{transaction.value}}</span>
+              <span class="badge receipt">Add receipt detail</span>
+            </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="QRModal" tabindex="-1" role="dialog" aria-labelledby="QRModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Transcation</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>
+        <button type="button" class="btn btn-primary">Send notification to phone</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-lg-10 col-lg-offset-1 text-left">
+    MAS Is The Best
+    <p>1 + 2 = {{1 + 2}}</p>
+  </div>
+
+  <script type="text/javascript">
+    $('#QRModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var message = button.data('message') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text(message)
+      modal.find('.modal-body input').val(message)
+    })
+  </script>
 
 </body>
 
