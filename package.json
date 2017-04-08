@@ -1,7 +1,7 @@
 {
   "name": "MAS-Starling-Hackathon",
   "version": "1.0.0",
-  "description": "A dynamic heatmap showing user transactions",
+  "description": "Reciept QR Code Technology Integrated with Starling",
   "main": "",
   "dependencies": {
     "angular": "1.6.4",
