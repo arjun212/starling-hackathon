@@ -4,7 +4,8 @@ var cors = require( 'cors' ) ;
 
 var app = express() ; 
 
-app.use(cors())
+app.use( cors() ) ;
+app.use( express.logger() );
 
 app.get( '/api/test', function(req, res){  console.log('TEST GOT CALLED'); res.send('hello');} ) ;
 
@@ -128,21 +129,15 @@ function getTxFromStarlingAPI( actk )
 
 }
 
-function reqCbk(error, res, body, origRes)
-{
-	console.log( body ) ;
-	origRes.send('GOT HERE');
-}
-
-function getTxFromCache(  )
+function updateTxCache( txs )
 {
 
-}
+	var txCache = require('./json/cache') ;
 
-function updateTxCache( Txs )
-{
+	for (tx in txs)
+	{
 
-	var txCache = getTxFromCache() ;
+	}
 
 
 
