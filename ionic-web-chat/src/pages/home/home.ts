@@ -1,12 +1,19 @@
-import {Page} from 'ionic/ionic';
-import {Http} from "angular2/http";
-import {NgZone} from "angular2/core";
+import {Http} from "@angular/http";
+import {io} from "socket.io"
+import {NgZone, Component} from "@angular/core";
  
-@Page({
-    templateUrl: 'build/pages/home/home.html',
+@Component({
+    templateUrl: 'home.html',
 })
  
 export class HomePage {
+  messages;
+  socketHost;
+  zone;
+  chatBox;
+  socket;
+
+
     constructor(http: Http) {
         this.messages = [];
         this.socketHost = "http://192.168.57.1:3000";
