@@ -8,8 +8,17 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
-app.use( cors() ) ;
-app.use( express.logger() );
+
+
+
+// var corsOptions = {
+//   origin: 'mas-starling-hackathon.herokuapp.com',
+//   optionsSuccessStatus: 200
+// }
+
+app.use( cors(  ) ) ;
+
+// app.use( express.logger() );
 
 app.get( '/api/test', function(req, res){  console.log('TEST GOT CALLED'); res.send('hello');} ) ;
 
@@ -129,7 +138,7 @@ function getTxFromStarlingAPI( actk )
 	var filteredSTxData = sTxData.map(
 		(elem) => { return { 
 					'date'     : elem.created          ,
-					'value'    : Math.abs(elem.amount) ,
+					'value'    : Math.abs(elem.amount).toFixed(2) ,
 					'merchant' : elem.narrative        ,
 					'id'       : elem.id    		   ,
 					'receipts' : false
@@ -142,10 +151,15 @@ function getTxFromStarlingAPI( actk )
 
 }
 
+function getTxFromCache()
+{
+	return require('./json/cache')
+}
+
 function updateTxCache( txs )
 {
 
-	var txCache = require('./json/cache') ;
+	var txCache = getTxFromCache() ;
 
 	for (tx in txs)
 	{
