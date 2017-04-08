@@ -1,0 +1,12 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background: #4B3A6D;
+    color: #fff;
+}
+
+.navbar-default {
+    background: #fff;
+}
+
+.list-group-item.disabled, .list-group-item.disabled:focus, .list-group-item.disabled:hover {
+    cursor: default;
+}
