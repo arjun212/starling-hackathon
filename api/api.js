@@ -2,7 +2,11 @@ var express = require( 'express' ) ;
 var request = require('sync-request');
 var cors = require( 'cors' ) ;
 
+
 var app = express() ; 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var port = process.env.PORT || 3000;
 
 app.use( cors() ) ;
 app.use( express.logger() );
@@ -22,7 +26,16 @@ app.get( 'api/getProducts/:txId', getProductsForTxCbk ) ;
 
 
 
-app.listen(8000)
+http.listen(port, function(){
+  console.log('listening on *:' + port);
+});
+
+io.on('connection', function(socket){
+  socket.on('message', function(msg){
+    console.log('sending message back from server to all clients')
+    io.emit('message', msg);
+  });
+});
 
 //Walter Bishop
 var accessToken = 'e930gP64ViFiWwDxfvP5DsAjXVkfkXgBJ9aB67ynqtFe37AgJlJgzLBKalgVl35r';
