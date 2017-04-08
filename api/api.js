@@ -24,7 +24,7 @@ app.get( 'api/getProducts/:txId', getProductsForTxCbk ) ;
 app.listen(8000)
 
 //Walter Bishop
-var accessToken = 'e930gP64ViFiWwDxfvP5DsAjXVkfkXgBJ9aB67ynqtFe37AgJlJgzLBKalgVl35r';
+var accessToken = 'jPg45nv90P8v8o3EpXSMva03cklWnFVXaM0bXVzm25NxpXizcjdKNK10gKCevZoq';
 
 
 
@@ -118,7 +118,7 @@ function getTxFromStarlingAPI( actk )
 					'value'    : Math.abs(elem.amount) ,
 					'merchant' : elem.narrative        ,
 					'id'       : elem.id    		   ,
-					'receipts' : false
+					'receipts' : "False"
 		 		  } 
 		}
 	);

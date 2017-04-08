@@ -65,7 +65,7 @@ button {
 }
 
 .badge {
-    min-width: 50px;
+    min-width: 60px;
 }
 
 .vertical-alignment-helper {
@@ -87,4 +87,8 @@ button {
     /* To center horizontally */
     margin: 0 auto;
     pointer-events: all;
+}
+
+.capitalise {
+   text-transform: capitalize;
 }

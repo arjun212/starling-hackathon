@@ -37,12 +37,12 @@
 
             <div ng-switch-when="True">
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item">
-                <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
-                {{transaction.merchant}}
+                <span class="label label-default" style="font-size: 90%">{{transaction.date| date:"dd MMM"}}</span>
+                <span class="capitalise">{{transaction.merchant | lowercase}}</span>
                 <span class="badge">£{{transaction.value}}</span>
               </a>
               <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
-                  <button ng-repeat="item in item2" type="button" class="list-group-item disabled shaded">
+                  <button ng-repeat="item in items| filter:{transactionid: transaction.id}" type="button" class="list-group-item disabled shaded">
                     {{item.name}}
                     <span class="badge">£{{item.value}}</span>
                   </button>
@@ -51,17 +51,11 @@
 
             <div ng-switch-default>
               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item disabled">
-                <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
-                {{transaction.merchant}}
+                <span class="label label-default" style="font-size: 90%">{{transaction.date| date:"dd MMM"}}</span>
+                <span class="capitalise">{{transaction.merchant | lowercase}}</span>
                 <span class="badge">£{{transaction.value}}</span>
                 <span class="badge receipt">Add receipt detail</span>
               </a>
-            <!--<button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">-->
-              <!--<span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>-->
-              <!--{{transaction.merchant}}-->
-              <!--<span class="badge">£{{transaction.value}}</span>-->
-              <!--<span class="badge receipt">Add receipt detail</span>-->
-            <!--</button>-->
               <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
                   <li class="list-group-item input">
                     <div style="margin: 0 auto; text-align: center">
@@ -69,13 +63,6 @@
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">Send notification to phone</button>
                     </div>
                   </li>
-                  <!--<button ng-repeat="item in item2" type="button" class="list-group-item disabled shaded">-->
-                      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                      <!--<button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>-->
-                      <!--<button type="button" class="btn btn-primary">Send notification to phone</button>-->
-                    <!--{{item.name}}-->
-                    <!--<span class="badge">£{{item.value}}</span>-->
-                  <!--</button>-->
               </div>
             </div>
 
@@ -109,21 +96,6 @@
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this)
       modal.find('.modal-title').text('We have sent a notification to your phone! Please use this to scan the QR code for ' + message)
-    })
-
-
-
-
-
-
-    $('#detailModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // Button that triggered the modal
-      var message = button.data('message') // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this)
-      modal.find('.modal-title').text(message)
-      modal.find('.modal-body input').val(message)
     })
   </script>
 

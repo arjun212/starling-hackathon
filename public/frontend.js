@@ -2,54 +2,46 @@ var angular = require ('angular');
 
 var app = angular.module('app', []);
 
-app.controller('appController', function appController($scope) {
+app.controller('appController', function appController($scope, $http) {
 //    request.get('http://localhost:8000/api/random', function (error, response, body) {
 //        $scope.text = body;
 //        $scope.$apply();
 //    }
-    $scope.transactions = [
-        {
-          date: '8th April',
-          merchant: 'Sainsbury',
-          receipts: "False",
-          id: "1",
-          value: "2.99"
-        },
-        {
-          date: '8th April',
-          merchant: 'Waitrose',
-          receipts: "True",
-          id: "2",
-          value: "12.99"
-        },
-        {
-          date: '7th April',
-          merchant: 'Tesco',
-          receipts: "False",
-          id: "3",
-          value: "17.99"
-        },
-    ];
 
+      $scope.status = {
+        isCustomHeaderOpen: false,
+        isFirstOpen: true,
+        isFirstDisabled: false,
+        oneAtATime: true
+      };
 
-    $scope.item2 = [
+    $http.get("http://localhost:8000/api/getAllTransactions")
+    .then(function(response) {
+        $scope.transactions = response.data;
+    });
+
+    $scope.items = [
         {
-          id: "1",
+          transactionid: "5df5d3df-e9d6-4543-9b98-c475bd4f8c9f",
           name: "Spinach",
           value: "15.45"
         },
         {
-          id: "2",
+          transactionid: "5df5d3df-e9d6-4543-9b98-c475bd4f8c9f",
           name: "Tropicana Orange Juice",
           value: "5.45"
         },
         {
-          id: "3",
+          transactionid: "5df5d3df-e9d6-4543-9b98-c475bd4f8c9f",
           name: "Bananas",
           value: "3.45"
         },
+        {
+          transactionid: "fb3951f7-6961-496b-a4d5-158cc079ae70",
+          name: "Bananas",
+          value: "3.75"
+        }
     ];
-
 
 });
 
