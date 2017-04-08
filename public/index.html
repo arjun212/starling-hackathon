@@ -34,30 +34,60 @@
         <strong>You have new transactions since your last visit!</strong>
       </div>
       <div class="list-group">
-        <button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£12.99 spent at Sainsbury's on 8th April">
-          <span class="label label-default" style="font-size: 90%">8th April</span>
-          Sainsbury's
-          <span class="badge">£12.99</span>
-          <span class="badge receipt">Add receipt detail</span>
-        </button>
 
-        <a href="#" class="list-group-item">
-          <span class="label label-default" style="font-size: 90%">8th April</span>
-          Waitrose
-          <span class="badge">£0.99</span>
-        </a>
-        <a href="#" class="list-group-item">
-          <span class="label label-default" style="font-size: 90%">8th April</span>
-          Sainsbury's
-          <span class="badge">£2.99</span>
-        </a>
+        <div ng-repeat="transaction in transactions">
 
-        <button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£12.99 spent at Sainsbury's on 8th April">
-          <span class="label label-default" style="font-size: 90%">7th April</span>
-          Tesco
-          <span class="badge">£72.99</span>
-          <span class="badge receipt">Add receipt detail</span>
-        </button>
+          <div ng-switch="transaction.receipts">
+
+            <div ng-switch-when="True">
+              <a href="#" class="list-group-item">
+                <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
+                {{transaction.merchant}}
+                <span class="badge">£{{transaction.value}}</span>
+              </a>
+            </div>
+
+            <div ng-switch-default>
+            <button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">
+              <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
+              {{transaction.merchant}}
+              <span class="badge">£{{transaction.value}}</span>
+              <span class="badge receipt">Add receipt detail</span>
+            </button>
+            </div>
+
+          </div>
+
+        </div>
+
+
+<!--ng-if="transaction.receipts == False"-->
+<!--ng-if="transaction.receipts == True"-->
+
+        <!--<button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£12.99 spent at Sainsbury's on 8th April">-->
+          <!--<span class="label label-default" style="font-size: 90%">8th April</span>-->
+          <!--Sainsbury's-->
+          <!--<span class="badge">£12.99</span>-->
+          <!--<span class="badge receipt">Add receipt detail</span>-->
+        <!--</button>-->
+
+        <!--<a href="#" class="list-group-item">-->
+          <!--<span class="label label-default" style="font-size: 90%">8th April</span>-->
+          <!--Waitrose-->
+          <!--<span class="badge">£0.99</span>-->
+        <!--</a>-->
+        <!--<a href="#" class="list-group-item">-->
+          <!--<span class="label label-default" style="font-size: 90%">8th April</span>-->
+          <!--Sainsbury's-->
+          <!--<span class="badge">£2.99</span>-->
+        <!--</a>-->
+
+        <!--<button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£12.99 spent at Sainsbury's on 8th April">-->
+          <!--<span class="label label-default" style="font-size: 90%">7th April</span>-->
+          <!--Tesco-->
+          <!--<span class="badge">£72.99</span>-->
+          <!--<span class="badge receipt">Add receipt detail</span>-->
+        <!--</button>-->
       </div>
     </div>
   </div>
@@ -71,6 +101,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>
         <button type="button" class="btn btn-primary">Send notification to phone</button>
       </div>
     </div>

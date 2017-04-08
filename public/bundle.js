@@ -64469,21 +64469,35 @@ var request = require ('request');
 
 var app = angular.module('app', []);
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-
 app.controller('appController', function appController($scope) {
-  request.get('http://localhost:8000/api/random', function (error, response, body) {
-    $scope.text = body;
-    $scope.$apply();
-  });
+//    request.get('http://localhost:8000/api/random', function (error, response, body) {
+//        $scope.text = body;
+//        $scope.$apply();
+//    }
+
+    $scope.transactions = [
+        {
+          date: '8th April',
+          merchant: 'Sainsbury',
+          receipts: "False",
+          transactionid: "1",
+          value: "2.99"
+        },
+        {
+          date: '8th April',
+          merchant: 'Waitrose',
+          receipts: "True",
+          transactionid: "2",
+          value: "12.99"
+        },
+        {
+          date: '7th April',
+          merchant: 'Tesco',
+          receipts: "False",
+          transactionid: "3",
+          value: "17.99"
+        },
+    ];
 });
 
 
