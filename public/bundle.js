@@ -33393,7 +33393,7 @@ app.controller('appController', function appController($scope, $http) {
         oneAtATime: true
       };
 
-    $http.get('http://mas-starling-hackathon-rest.herokuapp.com/api/getAllTransactions')
+    $http.get('http://mas-starling-rest.herokuapp.com/api/getAllTransactions')
     .then(function(response) {
         $scope.transactions = response.data;
     });
