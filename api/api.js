@@ -1,13 +1,22 @@
 var express = require( 'express' ) ;
 var request = require( 'request' ) ;
-
+var cors = require( 'cors' ) ;
 var app = express() ;
+app.use(cors())
+
+var access_token = "nUoPyZnXJLA7BWUWUoR4KNNwKJx8oTilYv3d3dMaqYMGtbmzkJoe2NZSl7wKZ556"
  
 app.get('/api/oauth', authCallback) ;
 
 app.get('/api/test', testCallback) ;
 
 app.get('/api/random', randomString) ;
+
+app.get('/api/starling/getaccount', getAccount) ;
+
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
 app.listen(8000)
 
@@ -31,8 +40,17 @@ function randomString(req, res) {
         return possible[Math.floor(Math.random() * possible.length)];
     }).join('');
 
-    console.log(randomString);
-    return randomString;
+    res.send(randomString);
+}
+
+function getAccount(req, res) {
+    var url = 'https://api.starlingbank.com/api/v1/accounts/balance'
+    var headers = {
+        'Authorization': 'Bearer ' + access_token
+    }
+    request.get({url: url, headers: headers}, function (error, response, body) {
+        console.log(body)
+    });
 }
 
 function authCallback(req, res) 
