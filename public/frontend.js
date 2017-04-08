@@ -15,7 +15,7 @@ app.controller('appController', function appController($scope, $http) {
         oneAtATime: true
       };
 
-    $http.get("http://localhost:8000/api/getAllTransactions")
+    $http.get("https://mas-starling-hackathon-rest.herokuapp.com/api/getAllTransactions")
     .then(function(response) {
         $scope.transactions = response.data;
     });
