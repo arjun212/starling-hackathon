@@ -10,7 +10,6 @@
     "express": "4.15.x",
     "http-server": "0.x",
     "jquery": "^3.2.1",
-    "request": "2.35.x",
     "sync-request" : "4.0.x"
   },
   "devDependencies": {

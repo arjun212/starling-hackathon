@@ -13,8 +13,8 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <ul class="nav nav-pills" style="margin-top: 0.4rem">
-        <li role="presentation" class="active"><a href="#">Home</a></li>
-        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/analytics">Analytics</a></li>
       </ul>
     </div>
   </div><!-- /.container-fluid -->
@@ -23,37 +23,60 @@
 <body ng-controller="appController">
 
   <div class="col-lg-10 col-lg-offset-1 text-left">
-
-  </div>
-
-  <div class="col-lg-10 col-lg-offset-1 text-left">
     <div class="panel panel-default">
       <div class="panel-heading">Your recent transactions</div>
       <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>You have new transactions since your last visit!</strong>
       </div>
-      <div class="list-group">
+      <div class="list-group" id="accordion" role="tablist" aria-multiselectable="true">
 
         <div ng-repeat="transaction in transactions">
 
           <div ng-switch="transaction.receipts">
 
             <div ng-switch-when="True">
-              <a href="/transaction/{{transaction.id}}" class="list-group-item">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item">
                 <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
                 {{transaction.merchant}}
                 <span class="badge">£{{transaction.value}}</span>
               </a>
+              <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
+                  <button ng-repeat="item in item2" type="button" class="list-group-item disabled shaded">
+                    {{item.name}}
+                    <span class="badge">£{{item.value}}</span>
+                  </button>
+              </div>
             </div>
 
             <div ng-switch-default>
-            <button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">
-              <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
-              {{transaction.merchant}}
-              <span class="badge">£{{transaction.value}}</span>
-              <span class="badge receipt">Add receipt detail</span>
-            </button>
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item disabled">
+                <span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>
+                {{transaction.merchant}}
+                <span class="badge">£{{transaction.value}}</span>
+                <span class="badge receipt">Add receipt detail</span>
+              </a>
+            <!--<button type="button" class="list-group-item disabled" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">-->
+              <!--<span class="label label-default" style="font-size: 90%">{{transaction.date}}</span>-->
+              <!--{{transaction.merchant}}-->
+              <!--<span class="badge">£{{transaction.value}}</span>-->
+              <!--<span class="badge receipt">Add receipt detail</span>-->
+            <!--</button>-->
+              <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
+                  <li class="list-group-item input">
+                    <div style="margin: 0 auto; text-align: center">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">Send notification to phone</button>
+                    </div>
+                  </li>
+                  <!--<button ng-repeat="item in item2" type="button" class="list-group-item disabled shaded">-->
+                      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                      <!--<button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>-->
+                      <!--<button type="button" class="btn btn-primary">Send notification to phone</button>-->
+                    <!--{{item.name}}-->
+                    <!--<span class="badge">£{{item.value}}</span>-->
+                  <!--</button>-->
+              </div>
             </div>
 
           </div>
@@ -64,29 +87,36 @@
     </div>
   </div>
 
-  <div class="modal fade" id="QRModal" tabindex="-1" role="dialog" aria-labelledby="QRModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Transcation</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>
-        <button type="button" class="btn btn-primary">Send notification to phone</button>
-      </div>
-    </div>
-  </div>
-  </div>
 
-  <div class="col-lg-10 col-lg-offset-1 text-left">
-    MAS Is The Best
-    <p>1 + 2 = {{1 + 2}}</p>
+  <div class="modal fade" id="QRModal" tabindex="-1" role="dialog" aria-labelledby="QRModalLabel">
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Transcation</h4>
+              </div>
+            </div>
+      </div>
+   </div>
   </div>
 
   <script type="text/javascript">
     $('#QRModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var message = button.data('message') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('We have sent a notification to your phone! Please use this to scan the QR code for ' + message)
+    })
+
+
+
+
+
+
+    $('#detailModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
       var message = button.data('message') // Extract info from data-* attributes
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

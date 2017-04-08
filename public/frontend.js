@@ -1,5 +1,4 @@
 var angular = require ('angular');
-var request = require ('request');
 
 var app = angular.module('app', []);
 
@@ -8,7 +7,6 @@ app.controller('appController', function appController($scope) {
 //        $scope.text = body;
 //        $scope.$apply();
 //    }
-
     $scope.transactions = [
         {
           date: '8th April',
@@ -32,5 +30,26 @@ app.controller('appController', function appController($scope) {
           value: "17.99"
         },
     ];
+
+
+    $scope.item2 = [
+        {
+          id: "1",
+          name: "Spinach",
+          value: "15.45"
+        },
+        {
+          id: "2",
+          name: "Tropicana Orange Juice",
+          value: "5.45"
+        },
+        {
+          id: "3",
+          name: "Bananas",
+          value: "3.45"
+        },
+    ];
+
+
 });
 
