@@ -5,11 +5,42 @@ var app = express() ;
  
 
 
-api.get('api/', fnCbk) ;
+api.get( 'api/', fnCbk ) ;
+
+
+api.get( 'api/consume/QR', qrConsumptionCbk ) ;
+
+api.get( 'api/getAllTransactions', getAllTransactions ) ;
+
+api.get( 'api/getTopTransactions', qrConsumptionCbk2 ) ;
+
+
+api.get( 'api/consume/QR3', qrConsumptionCbk3 ) ;
+
 
 
 app.listen(8000)
 
+
+function qrConsumptionCbk(req, res)
+{
+	res.status( 200 ).send( "qrConsumptionCbk, Called" ) ;
+}
+
+function getAllTransactions(req, res)
+{
+	res.status( 200 ).send( "getAllTransactions, Called" ) ;
+}
+
+function qrConsumptionCbk2(req, res)
+{
+	res.status( 200 ).send( "qrConsumptionCbk2, Called" ) ;
+}
+
+function qrConsumptionCbk3(req, res)
+{
+	res.status( 200 ).send( "qrConsumptionCbk3, Called" ) ;
+}
 
 
 //=============================================================================
