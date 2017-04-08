@@ -18,7 +18,7 @@
   },
   "scripts": {
     "local": "browserify public/frontend.js > public/bundle.js | node api/api.js | http-server",
-    "start": "node api/api.js | http-server",
+    "start": "node api/api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arjun Muhunthan",
