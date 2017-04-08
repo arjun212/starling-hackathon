@@ -1,7 +1,10 @@
 var express = require( 'express' ) ;
 var request = require( 'request' ) ;
-
+var cors = require( 'cors' ) ;
 var app = express() ;
+app.use(cors())
+
+var access_token = "nUoPyZnXJLA7BWUWUoR4KNNwKJx8oTilYv3d3dMaqYMGtbmzkJoe2NZSl7wKZ556"
  
 
 
@@ -18,6 +21,8 @@ api.get( 'api/getTopTransactions', qrConsumptionCbk2 ) ;
 api.get( 'api/consume/QR3', qrConsumptionCbk3 ) ;
 
 
+
+app.get('/api/starling/getaccount', getAccount) ;
 
 app.listen(8000)
 
@@ -56,8 +61,7 @@ var redirect_uri = 'http://127.0.0.1:8000/api/oauth' ;
 
 var url = 'https://api.getmondo.co.uk/oauth2/token' ;
 
-
-function authCallback(req, res) 
+function authCallback(req, res)
 {
 
 	var oauth = {

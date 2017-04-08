@@ -4,16 +4,19 @@
   "description": "Reciept QR Code Technology Integrated with Starling",
   "main": "",
   "dependencies": {
-    "http-server": "0.x",
-    "express": "4.15.x",
     "angular": "1.6.4",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.8.3",
+    "express": "4.15.x",
+    "http-server": "0.x",
+    "jquery": "^3.2.1",
     "request": "2.35.x"
   },
   "devDependencies": {
     "browserify": "^14.3.0"
   },
   "scripts": {
-    "start": "browserify public/random.js > public/bundle.js | node api/api.js | http-server",
+    "start": "browserify public/frontend.js > public/bundle.js | node api/api.js | http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arjun Muhunthan",
