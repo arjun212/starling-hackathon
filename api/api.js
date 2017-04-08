@@ -47,7 +47,7 @@ io.on('connection', function(socket){
 });
 
 //Walter Bishop
-var accessToken = 'e930gP64ViFiWwDxfvP5DsAjXVkfkXgBJ9aB67ynqtFe37AgJlJgzLBKalgVl35r';
+var accessToken = 'jPg45nv90P8v8o3EpXSMva03cklWnFVXaM0bXVzm25NxpXizcjdKNK10gKCevZoq';
 
 
 
