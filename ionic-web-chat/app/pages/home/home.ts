@@ -15,6 +15,7 @@ export class HomePage {
     socketHost: string;
     zone: NgZone;
     chatBox: string;
+    json: string;
 
     constructor(http: Http, public socket: SocketService) {
         this.messages = [];
@@ -22,6 +23,7 @@ export class HomePage {
         this.zone = new NgZone({enableLongStackTrace: false});
        
         this.chatBox = "";
+        this.json = "";
         this.socket.socketService.subscribe(event => {
         console.log('message received from server... ', event);
         if (event.category === 'message'){
@@ -52,9 +54,8 @@ export class HomePage {
         if (newMsg) {
           // let newMsg = this.formatMessage(msg);
           this.socket.sendMessage(newMsg);
-          this.messages.push(newMsg);
           console.log('emitting: ', newMsg);
         }
-        this.chatBox = '';
+        this.json = '';
     }
 }

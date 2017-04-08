@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "customer", "_type" : "history", "_id" : "1" } }
+{"products" :[{"item" : "Spinach","price": "0.5","TransactionId": "f3e7b64c-fa68-4934-8645-1cb1d4a26783"},{"TransactionId": "f3e7b64c-fa68-4934-8645-1cb1d4a26783","item" : "Peroni","price": "5"},{"TransactionId": "f3e7b64c-fa68-4934-8645-1cb1d4a26783","item" : "Rice","price": "1"},{"TransactionId": "f3e7b64c-fa68-4934-8645-1cb1d4a26783","item" : "Apple","price": "1.5"}]}
+{ "index" : { "_index" : "customer", "_type" : "history", "_id" : "2" } }
+{"products" :[{"TransactionId": "bc2824f9-7666-49e6-8db0-5a9e59c2235a","item" : "Spinach","price": "1.5"},{"TransactionId": "bc2824f9-7666-49e6-8db0-5a9e59c2235a","item" : "Peroni","price": "3"},{"TransactionId": "bc2824f9-7666-49e6-8db0-5a9e59c2235a","item" : "Rice","price": "2"},{"TransactionId": "bc2824f9-7666-49e6-8db0-5a9e59c2235a","item" : "Apple","price": ".5"}]}
