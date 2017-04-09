@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {DataService} from '../../providers/data-service/data-service';
 
 @Component({
   selector: 'product-breakdown',
@@ -9,14 +10,22 @@ import { NavController, NavParams } from 'ionic-angular';
 export class BreakDownPage{
 
     public products : Array<{product: string, price: string}>
+    public error : string;
 
-    constructor(private _nav: NavController, private _navParams : NavParams) { }
+    constructor(private _nav: NavController, 
+                private _navParams : NavParams,
+                private dataService : DataService) { }
 
     ionViewDidLoad(){
         var id =this._navParams.get('id');
+        this.getProductBreakdown(id);
     }
 
-    getProductBreakdown(){}
+    getProductBreakdown(id: string){
+        this.dataService.getProductsForTransaction(id)
+        .subscribe(products => this.products= products,
+                   error => this.error=error)
+    }
 }
 
 

@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list no-lines>
+  <ion-list>
 
-    <ion-item *ngFor="let message of messages">
+    <ion-item *ngFor="let message of messages" (click)="getBreakDown(message.id)">
         {{message.merchant + " - " + message.value}}    
     </ion-item>
 

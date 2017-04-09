@@ -3,11 +3,9 @@ import { Http, Response }          from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Hero } from './hero';
-
 
 @Injectable()
-export class HeroService {
+export class DataService {
   private heroesUrl = 'http://mas-starling-rest.herokuapp.com/api/getProductsForTx/';  // URL to web API
   constructor (private http: Http) {}
 
@@ -21,7 +19,7 @@ export class HeroService {
     let body = res.json();
     return body.map( (data) => { return {"price" : data.price, "product": data.product } })
   }
-  
+
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;

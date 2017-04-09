@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import {BreakDownPage} from '../pages/breakdown/breakdown';
 
 import {SocketService} from '../providers/socket-service/socket-service'; 
+import {DataService} from '../providers/data-service/data-service'; 
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {SocketService} from '../providers/socket-service/socket-service';
     StatusBar,
     SplashScreen,
     SocketService,
+    DataService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
