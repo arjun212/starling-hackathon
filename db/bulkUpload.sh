@@ -1,1 +1,0 @@
-curl -H "Content-Type: application/json" -XPOST 'localhost:9200/customer/history/_bulk?pretty&refresh' --data-binary @api/json/userHistory.json
