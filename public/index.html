@@ -1,7 +1,7 @@
 <html ng-app="app">
   <head>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 
 
@@ -51,7 +51,7 @@
 
                         <div style="margin: 0 auto; text-align: center">
                             <div ng-repeat="item in items| filter:{id: transaction.id}" type="button" class="list-group-item disabled shaded">
-                            {{item.product}}
+                            {{item.product | capitalize}}
                             <span class="badge">£{{item.price}}</span>
                             </div>
                         </div>
@@ -115,15 +115,16 @@
 
 
 
-      <script type="text/javascript">
-      $('#QRModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // Button that triggered the modal
-      var message = button.data('message') // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this)
-      modal.find('.modal-title').text('We have sent a notification to your phone! Please use this to scan the QR code for ' + message)
-      })
-      </script>
+    <script type="text/javascript">
+    $('#QRModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var message = button.data('message') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('We have sent a notification to your phone! Please use this to scan the QR code for ' + message)
+    })
+    </script>
+    
     </body>
   </html>

@@ -1,13 +1,37 @@
 var angular = require ('angular');
-var uib = require ('angular-bootstrap-npm');
+var socket = require('socket.io-client')('http://mas-starling-rest.herokuapp.com');
 
-var app = angular.module('app', [ 'ui.bootstrap' ]);
+
+
+var app = angular.module('app', []);
 
 app.controller('appController', function appController($scope, $http) {
 //    request.get('http://localhost:8000/api/random', function (error, response, body) {
 //        $scope.text = body;
 //        $scope.$apply();
 //    }
+
+      $scope.transactions = [] ;
+
+      socket.on('connect', function(){
+        console.log( "connected successfully" ) ;
+
+      } ) ;
+
+      
+      socket.on('message', function(data){
+        console.log( "data is ", data ) ;
+
+        $scope.transactions.push( data ) ;
+        $scope.$apply() ;
+      } ) ;
+      
+
+      socket.on('disconnect', function(){
+        console.log( "disconnected successfully" ) ;
+
+      } ) ;
+
 
       $scope.status = {
         isCustomHeaderOpen: false,
@@ -28,29 +52,11 @@ app.controller('appController', function appController($scope, $http) {
     });
 
 
-    $scope.items = [
-        {
-          transactionid: '5df5d3df-e9d6-4543-9b98-c475bd4f8c9f',
-          name: 'Spinach',
-          value: '15.45'
-        },
-        {
-          transactionid: '5df5d3df-e9d6-4543-9b98-c475bd4f8c9f',
-          name: 'Tropicana Orange Juice',
-          value: '5.45'
-        },
-        {
-          transactionid: '5df5d3df-e9d6-4543-9b98-c475bd4f8c9f',
-          name: 'Bananas',
-          value: '3.45'
-        },
-        {
-          transactionid: 'fb3951f7-6961-496b-a4d5-158cc079ae70',
-          name: 'Bananas',
-          value: '3.75'
-        }
-    ];
-
 });
 
 
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
