@@ -32,7 +32,7 @@
           </div>
           <div class="list-group" id="accordion" role="tablist" aria-multiselectable="true">
             
-              <div ng-repeat="transaction in transactions">
+              <div ng-repeat="transaction in transactions | orderBy: '-date'">
                 <div ng-switch="transaction.receipts">
 
 
