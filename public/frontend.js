@@ -57,5 +57,94 @@ app.controller('analyticsController', function analyticsController($scope, $http
     .then(function(response) {
       console.log(response.data);
         $scope.totalspend = response.data;
+        console.log($scope.totalspend);
+        console.log($scope.totalspend[0]);
+
+
+    var banana1 = liquidFillGaugeDefaultSettings();;
+    banana1.circleColor = "#efdb40";
+    banana1.textColor = "#efdb40";
+    banana1.waveColor = "#efdb40";
+    banana1.waveTextColor = "#a39211";
+
+    var banana2 = liquidFillGaugeDefaultSettings();;
+    banana2.circleColor = "#efdb40";
+    banana2.textColor = "#efdb40";
+    banana2.waveColor = "#efdb40";
+    banana2.waveTextColor = "#a39211";
+    banana2.displayPercent = false;
+    banana2.maxValue = 50;
+
+    var spinach1 = liquidFillGaugeDefaultSettings();;
+    spinach1.circleColor = "#AAAA39";
+    spinach1.textColor = "#555500";
+    spinach1.waveColor = "#AAAA39";
+    spinach1.waveTextColor = "#555500";
+
+    var spinach2 = liquidFillGaugeDefaultSettings();;
+    spinach2.circleColor = "#AAAA39";
+    spinach2.textColor = "#555500";
+    spinach2.waveColor = "#AAAA39";
+    spinach2.waveTextColor = "#555500";
+    spinach2.displayPercent = false;
+    spinach2.maxValue = 50;
+
+    var budweiser1 = liquidFillGaugeDefaultSettings();;
+    budweiser1.circleColor = "#911182";
+    budweiser1.textColor = "#911182";
+    budweiser1.waveColor = "#911182";
+    budweiser1.waveTextColor = "#600656";
+
+    var budweiser2 = liquidFillGaugeDefaultSettings();;
+    budweiser2.circleColor = "#911182";
+    budweiser2.textColor = "#911182";
+    budweiser2.waveColor = "#911182";
+    budweiser2.waveTextColor = "#d34ac4";
+    budweiser2.waveTextColor = "#d34ac4";
+    budweiser2.displayPercent = false;
+    budweiser2.maxValue = 50;
+
+    $scope.banana = {} ;
+    $scope.spinach = {} ;
+    $scope.budweiser = {} ;
+
+    for (i = 0; i < $scope.totalspend.length; ++i)
+    {
+        if ($scope.totalspend[i].product === "bananas")
+        {
+            $scope.banana = $scope.totalspend[i] ;
+        }
+        else if ($scope.totalspend[i].product === "spinach")
+        {
+            $scope.spinach =  $scope.totalspend[i] ;
+        }
+        else if ($scope.totalspend[i].product === "budweiser")
+        {
+            $scope.budweiser = $scope.totalspend[i] ;
+        }
+    }
+
+    var gauge1 = loadLiquidFillGauge("fillgauge1", Math.floor($scope.banana.price), banana2);
+    var gauge2 = loadLiquidFillGauge("fillgauge2", Math.floor($scope.spinach.price), spinach2);
+    var gauge3 = loadLiquidFillGauge("fillgauge3", Math.floor($scope.budweiser.price), budweiser2);
+
+    $('#percentage').on('click', function (event) {
+      var gauge1 = loadLiquidFillGauge("fillgauge1", Math.floor($scope.banana.percent), banana1, true);
+      var gauge2 = loadLiquidFillGauge("fillgauge2", Math.floor($scope.spinach.percent), spinach1, true);
+      var gauge3 = loadLiquidFillGauge("fillgauge3", Math.floor($scope.budweiser.percent), budweiser1, true);
+    })
+
+    $('#pound').on('click', function (event) {
+      var gauge1 = loadLiquidFillGauge("fillgauge1", Math.floor($scope.banana.price), banana2, true);
+      var gauge2 = loadLiquidFillGauge("fillgauge2", Math.floor($scope.spinach.price), spinach2, true);
+      var gauge3 = loadLiquidFillGauge("fillgauge3", Math.floor($scope.budweiser.price), budweiser2, true);
+    })
+
+
+
+
+
+
     });
+
 });

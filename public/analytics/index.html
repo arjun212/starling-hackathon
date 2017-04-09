@@ -30,10 +30,6 @@
 
     <body ng-controller="analyticsController">
         <div class="col-lg-10 col-lg-offset-1 text-center">
-
-            <div ng-repeat="item in topthree" | filter>
-            </div>
-
             <div class="page-header">
               <h1>Monthly spending in April</h1>
                 <div class="btn-group" role="group">
@@ -52,70 +48,94 @@
             </div>
             <div class="col-lg-3 col-md-3 text-center">
                 <svg id="fillgauge3" width="200" height="200"></svg>
-                <h3>Peroni</h3>
+                <h3>Budweiser</h3>
             </div>
         </div>
 
-        <script language="JavaScript">
-            var banana1 = liquidFillGaugeDefaultSettings();;
-            banana1.circleColor = "#efdb40";
-            banana1.textColor = "#efdb40";
-            banana1.waveColor = "#efdb40";
-            banana1.waveTextColor = "#a39211";
+        <!--<script language="JavaScript">-->
+            <!--var banana1 = liquidFillGaugeDefaultSettings();;-->
+            <!--banana1.circleColor = "#efdb40";-->
+            <!--banana1.textColor = "#efdb40";-->
+            <!--banana1.waveColor = "#efdb40";-->
+            <!--banana1.waveTextColor = "#a39211";-->
 
-            var banana2 = liquidFillGaugeDefaultSettings();;
-            banana2.circleColor = "#efdb40";
-            banana2.textColor = "#efdb40";
-            banana2.waveColor = "#efdb40";
-            banana2.waveTextColor = "#a39211";
-            banana2.displayPercent = false;
-            banana2.maxValue = 200;
+            <!--var banana2 = liquidFillGaugeDefaultSettings();;-->
+            <!--banana2.circleColor = "#efdb40";-->
+            <!--banana2.textColor = "#efdb40";-->
+            <!--banana2.waveColor = "#efdb40";-->
+            <!--banana2.waveTextColor = "#a39211";-->
+            <!--banana2.displayPercent = false;-->
+            <!--banana2.maxValue = 200;-->
 
-            var spinach1 = liquidFillGaugeDefaultSettings();;
-            spinach1.circleColor = "#AAAA39";
-            spinach1.textColor = "#555500";
-            spinach1.waveColor = "#AAAA39";
-            spinach1.waveTextColor = "#555500";
+            <!--var spinach1 = liquidFillGaugeDefaultSettings();;-->
+            <!--spinach1.circleColor = "#AAAA39";-->
+            <!--spinach1.textColor = "#555500";-->
+            <!--spinach1.waveColor = "#AAAA39";-->
+            <!--spinach1.waveTextColor = "#555500";-->
 
-            var spinach2 = liquidFillGaugeDefaultSettings();;
-            spinach2.circleColor = "#AAAA39";
-            spinach2.textColor = "#555500";
-            spinach2.waveColor = "#AAAA39";
-            spinach2.waveTextColor = "#555500";
-            spinach2.displayPercent = false;
-            spinach2.maxValue = 200;
+            <!--var spinach2 = liquidFillGaugeDefaultSettings();;-->
+            <!--spinach2.circleColor = "#AAAA39";-->
+            <!--spinach2.textColor = "#555500";-->
+            <!--spinach2.waveColor = "#AAAA39";-->
+            <!--spinach2.waveTextColor = "#555500";-->
+            <!--spinach2.displayPercent = false;-->
+            <!--spinach2.maxValue = 200;-->
 
-            var peroni1 = liquidFillGaugeDefaultSettings();;
-            peroni1.circleColor = "#911182";
-            peroni1.textColor = "#911182";
-            peroni1.waveColor = "#911182";
-            peroni1.waveTextColor = "#600656";
+            <!--var budweiser1 = liquidFillGaugeDefaultSettings();;-->
+            <!--budweiser1.circleColor = "#911182";-->
+            <!--budweiser1.textColor = "#911182";-->
+            <!--budweiser1.waveColor = "#911182";-->
+            <!--budweiser1.waveTextColor = "#600656";-->
 
-            var peroni2 = liquidFillGaugeDefaultSettings();;
-            peroni2.circleColor = "#911182";
-            peroni2.textColor = "#911182";
-            peroni2.waveColor = "#911182";
-            peroni2.waveTextColor = "#d34ac4";
-            peroni2.waveTextColor = "#d34ac4";
-            peroni2.displayPercent = false;
-            peroni2.maxValue = 200;
+            <!--var budweiser2 = liquidFillGaugeDefaultSettings();;-->
+            <!--budweiser2.circleColor = "#911182";-->
+            <!--budweiser2.textColor = "#911182";-->
+            <!--budweiser2.waveColor = "#911182";-->
+            <!--budweiser2.waveTextColor = "#d34ac4";-->
+            <!--budweiser2.waveTextColor = "#d34ac4";-->
+            <!--budweiser2.displayPercent = false;-->
+            <!--budweiser2.maxValue = 200;-->
 
-            var gauge1 = loadLiquidFillGauge("fillgauge1", 24, banana1);
-            var gauge2 = loadLiquidFillGauge("fillgauge2", 45, spinach1);
-            var gauge3 = loadLiquidFillGauge("fillgauge3", 31, peroni1);
+            <!--var gauge1 = loadLiquidFillGauge("fillgauge1", 24, banana1);-->
+            <!--var gauge2 = loadLiquidFillGauge("fillgauge2", 45, spinach1);-->
+            <!--var gauge3 = loadLiquidFillGauge("fillgauge3", 31, budweiser1);-->
 
-            $('#percentage').on('click', function (event) {
-              var gauge1 = loadLiquidFillGauge("fillgauge1", 24, banana1, true);
-              var gauge2 = loadLiquidFillGauge("fillgauge2", 45, spinach1, true);
-              var gauge3 = loadLiquidFillGauge("fillgauge3", 31, peroni1, true);
-            })
+            <!--$('#percentage').on('click', function (event) {-->
+              <!--var gauge1 = loadLiquidFillGauge("fillgauge1", 24, banana1, true);-->
+              <!--var gauge2 = loadLiquidFillGauge("fillgauge2", 45, spinach1, true);-->
+              <!--var gauge3 = loadLiquidFillGauge("fillgauge3", 31, budweiser1, true);-->
+            <!--})-->
 
-            $('#pound').on('click', function (event) {
-              var gauge1 = loadLiquidFillGauge("fillgauge1", 70.44, banana2, true);
-              var gauge2 = loadLiquidFillGauge("fillgauge2", 135.19, spinach2, true);
-              var gauge3 = loadLiquidFillGauge("fillgauge3", 98.32, peroni2, true);
-            })
+            <!--$('#pound').on('click', function (event) {-->
+              <!--var gauge1 = loadLiquidFillGauge("fillgauge1", 70.44, banana2, true);-->
+              <!--var gauge2 = loadLiquidFillGauge("fillgauge2", 135.19, spinach2, true);-->
+              <!--var gauge3 = loadLiquidFillGauge("fillgauge3", 98.32, budweiser2, true);-->
+            <!--})-->
+        <!--</script>-->
 
-        </script>
+        <!--<div ng-repeat="item in totalspend | filter:{product:'bananas'}" id="bananas">-->
+            <!--<script language="JavaScript">-->
+                <!--var price = angular.element("#bananas").scope().price;-->
+                <!--console.log(price)-->
+                <!--var gauge1 = loadLiquidFillGauge("fillgauge1", price, banana1);-->
+            <!--</script>-->
+        <!--</div>-->
+
+        <!--<div ng-repeat="item in totalspend | filter:{product:'spinach'}" id="spinach">-->
+            <!--<script language="JavaScript">-->
+                <!--var price = angular.element("#bananas").scope().price;-->
+                <!--console.log(price)-->
+                <!--var gauge2 = loadLiquidFillGauge("fillgauge2", price, spinach1);-->
+            <!--</script>-->
+        <!--</div>-->
+
+        <!--<div ng-repeat="item in totalspend | filter:{product:'budweiser'}" id="budweiser">-->
+            <!--<script language="JavaScript">-->
+                <!--var price = angular.element("#bananas").scope().price;-->
+                <!--console.log(price)-->
+                <!--var gauge3 = loadLiquidFillGauge("fillgauge3", price, budweiser1);-->
+            <!--</script>-->
+        <!--</div>-->
+
     </body>
 </html>
