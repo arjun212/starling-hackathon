@@ -7,6 +7,7 @@ import {DataService} from '../../providers/data-service/data-service';
 import {BreakDownPage} from '../breakdown/breakdown';
 import {ScanPage} from '../scan/scan';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
