@@ -12,6 +12,7 @@ app.controller('appController', function appController($scope, $http) {
 //    }
 
       $scope.transactions = [] ;
+      $scope.items = [] ;
 
       socket.on('connect', function(){
         console.log( "connected successfully" ) ;
@@ -23,6 +24,15 @@ app.controller('appController', function appController($scope, $http) {
         console.log( "data is ", data ) ;
 
         $scope.transactions.push( data ) ;
+
+        if ( data.receipts ){
+          $http.get('http://mas-starling-rest.herokuapp.com/api/getProductsForTx/' + data.id)
+          .then(function(response) {
+            console.log(response.data);
+
+            $scope.items = $scope.items.concat(response.data) ;
+          });
+        }
         $scope.$apply() ;
       } ) ;
       
@@ -48,15 +58,8 @@ app.controller('appController', function appController($scope, $http) {
     $http.get('http://mas-starling-rest.herokuapp.com/api/getAllProducts')
     .then(function(response) {
       console.log(response.data);
-        $scope.items = response.data;
+        $scope.items = $scope.items.concat(response.data);
     });
 
 
-});
-
-
-app.filter('capitalize', function() {
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
-    }
 });
