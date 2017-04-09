@@ -57,4 +57,12 @@ export class HomePage {
       }
     }
 
+    getColor(receipts: boolean){
+      if(receipts){
+        return 'primary';
+      } else{
+        return 'white';
+      }
+    }
+
 }

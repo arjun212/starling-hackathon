@@ -32,7 +32,8 @@ export class DataService {
       return body.map( (data) => { return {"merchant" : data.merchant, 
           "value": data.value,
           "id": data.id,
-          "receipts": data.receipts} 
+          "receipts": data.receipts,
+          "date" : data.date} 
         });
   }
 
