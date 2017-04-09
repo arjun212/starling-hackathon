@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 import {Component, NgZone} from "@angular/core";
 import * as io from 'socket.io-client';
 import {SocketService} from '../../providers/socket-service/socket-service';
+import {BreakDownPage} from '../breakdown/breakdown';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,7 @@ export class HomePage {
     chatBox: string;
     json: string;
 
-    constructor(http: Http, public socket: SocketService) {
+    constructor(http: Http, public socket: SocketService, private _nav: NavController) {
         this.messages = [];
         this.socketHost = "http://mas-starling-rest.herokuapp.com/";
         this.zone = new NgZone({enableLongStackTrace: false});
@@ -44,6 +45,12 @@ export class HomePage {
           console.log('emitting: ', newMsg);
         }
         this.json = '';
+    }
+
+    getBreakDown(id: string){
+      this._nav.push(BreakDownPage, {
+        id: id,
+      })
     }
 
 }
