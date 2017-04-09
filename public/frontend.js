@@ -23,6 +23,14 @@ app.controller('appController', function appController($scope, $http) {
         console.log( "data is ", data ) ;
 
         $scope.transactions.push( data ) ;
+
+        if ( data.receipts ){
+          $http.get('http://mas-starling-rest.herokuapp.com/api/getProductsForTx/' + data.id)
+          .then(function(response) {
+            console.log(response);
+            $scope.items.push(response)
+          });
+        }
         $scope.$apply() ;
       } ) ;
       
