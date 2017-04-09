@@ -1,6 +1,6 @@
 import { NavController } from 'ionic-angular';
 import {Http} from "@angular/http";
-import {Component, NgZone, ViewChild} from "@angular/core";
+import {Component, NgZone} from "@angular/core";
 import * as io from 'socket.io-client';
 import {SocketService} from '../../providers/socket-service/socket-service';
 
@@ -18,7 +18,7 @@ export class HomePage {
 
     constructor(http: Http, public socket: SocketService) {
         this.messages = [];
-        this.socketHost = "http://localhost:3000";
+        this.socketHost = "http://mas-starling-rest.herokuapp.com/";
         this.zone = new NgZone({enableLongStackTrace: false});
        
         this.chatBox = "";
@@ -27,6 +27,7 @@ export class HomePage {
         console.log('message received from server... ', event);
         if (event.category === 'message'){
           this.zone.run(() => {
+            console.log("here")
             this.messages.push(event.message);
           });
         }
@@ -35,14 +36,14 @@ export class HomePage {
     }
 
 
-    // send(message) {
-    //     let newMsg = this.formatMessage(message);
-    //     if (newMsg) {
-    //       // let newMsg = this.formatMessage(msg);
-    //       this.socket.sendMessage(newMsg);
-    //       console.log('emitting: ', newMsg);
-    //     }
-    //     this.json = '';
-    // }
-}
+    send(message) {
+        let newMsg = message//this.formatMessage(message);
+        if (newMsg) {
+          // let newMsg = this.formatMessage(msg);
+          this.socket.sendMessage(newMsg);
+          console.log('emitting: ', newMsg);
+        }
+        this.json = '';
+    }
+
 }

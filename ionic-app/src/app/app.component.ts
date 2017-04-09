@@ -19,10 +19,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
       socket.initialize();
-      socket.socketService.subscribe(event => {
-         console.log('message received from server... ', event);
-     });
+    //   socket.socketService.subscribe(event => {
+    //      console.log('message received from server... ', event);
+    //  });
     });
   }
 }

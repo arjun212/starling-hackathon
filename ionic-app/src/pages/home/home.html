@@ -10,11 +10,13 @@
   <ion-list no-lines>
 
     <ion-item *ngFor="let message of messages">
-    <div class="animate-in-secondary">
-        <p>{{message.message}}</p>
-      </div>
-      
+        {{message.merchant + " - " + message.value}}    
     </ion-item>
 
   </ion-list>
 </ion-content>
+
+<ion-toolbar position="bottom">
+      <ion-input [(ngModel)]="json" type="text" placeholder="enter json..."></ion-input>
+      <button (click)="send(json)" style="position:absolute; right: 0; top: 0; margin: 0;"><ion-icon name="chatbubbles"></ion-icon></button>
+</ion-toolbar>
