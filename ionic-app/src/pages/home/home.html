@@ -9,8 +9,10 @@
 <ion-content padding>
   <ion-list>
 
-    <ion-item *ngFor="let message of messages" color=primary (click)="getBreakDown(message.id, message.value, message.merchant, message.receipts)">
-        {{message.merchant + " - " + message.value}}    
+    <ion-item *ngFor="let message of messages" color="getColor(message.receipts)" (click)="getBreakDown(message.id, message.value, message.merchant, message.receipts)">
+        <h2>{{message.merchant}}</h2>
+        <h3>{{message.value}}</h3>
+        <ion-note item-right>{{message.date}}</ion-note>
     </ion-item>
 
   </ion-list>
