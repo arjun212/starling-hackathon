@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
   private heroesUrl = 'http://mas-starling-rest.herokuapp.com/api/getProductsForTx/';  // URL to web API
+  private allTxUrl = 'http://mas-starling-rest.herokuapp.com/api/getAllTransactions'
   constructor (private http: Http) {}
 
   getProductsForTransaction(id:string) {
@@ -19,6 +20,23 @@ export class DataService {
     let body = res.json();
     return body.map( (data) => { return {"price" : data.price, "product": data.product } })
   }
+
+  getAllTransactions(){
+      return this.http.get(this.allTxUrl)
+                    .map(this.extractTxData)
+                    .catch(this.handleError);
+  }
+
+  private extractTxData(res : Response){
+      let body = res.json();
+      return body.map( (data) => { return {"merchant" : data.merchant, 
+          "value": data.value,
+          "id": data.id,
+          "receipts": data.receipts} 
+        });
+  }
+
+
 
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
