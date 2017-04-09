@@ -2,12 +2,10 @@
   <head>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <script src="bundle.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -26,10 +24,17 @@
       <div class="col-lg-10 col-lg-offset-1 text-left">
         <div class="panel panel-default">
           <div class="panel-heading">Your recent transactions</div>
-          <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>You have new transactions since your last visit!</strong>
+          <div ng-switch="updated">
+            <div ng-switch-when="true">
+              <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>You have new transactions since your last visit!</strong>
+              </div>
+            </div>
+            <div ng-switch-default>
+            </div>
           </div>
+
           <div class="list-group" id="accordion" role="tablist" aria-multiselectable="true">
             
               <div ng-repeat="transaction in transactions | orderBy: '-date'">
@@ -40,29 +45,20 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item">
                       <span class="label label-default" style="font-size: 90%">{{transaction.date| date:"dd MMM"}}</span>
                       <span class="capitalise">{{transaction.merchant | lowercase}}</span>
-                      <span class="badge">£{{transaction.value}}</span>
+                      <span class="badge">£{{transaction.value | number:2}}</span>
+                      <div ng-repeat="item in items| filter:{id: transaction.id} as filtered" style="display: none;">
+                      </div>
+                      - {{filtered.length}} items
                     </a>
 
 
 
 
-                    <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
-                      <li class="list-group-item input">
-
-                        <div style="margin: 0 auto; text-align: center">
-                            <div ng-repeat="item in items| filter:{id: transaction.id}" type="button" class="list-group-item disabled shaded">
-                            {{item.product}}
-                            <span class="badge">£{{item.price}}</span>
-                            </div>
-                        </div>
-
-                      </li>
-                    </div>
 
                     <div id="collapse{{transaction.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{transaction.id}}">
-                      <button ng-repeat="item in items| filter:{id: transaction.id}" type="button" class="list-group-item disabled shaded">
-                      {{item.product}}
-                      <span class="badge">£{{item.price}}</span>
+                      <button ng-repeat="item in items| filter:{id: transaction.id} as filtered" type="button" class="list-group-item disabled shaded">
+                      <span class="capitalise" style="margin-left: 58px;">{{item.product | lowercase }} </span>
+                      <span class="badge">£{{item.price | number:2}}</span>
                       </button>
                     </div>
 
@@ -75,7 +71,7 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{transaction.id}}" aria-expanded="true" aria-controls="collapse{{transaction.id}}" class="list-group-item disabled">
                       <span class="label label-default" style="font-size: 90%">{{transaction.date| date:"dd MMM"}}</span>
                       <span class="capitalise">{{transaction.merchant | lowercase}}</span>
-                      <span class="badge">£{{transaction.value}}</span>
+                      <span class="badge">£{{transaction.value | number:2}}</span>
                       <span class="badge receipt">Add receipt detail</span>
                     </a>
 
@@ -84,7 +80,7 @@
 
                         <div id="drilldown" style="margin: 0 auto; text-align: center">
                           <button type="button" class="btn btn-info" data-dismiss="modal">Add your own receipt details</button>
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date}}">Send notification to phone</button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#QRModal" data-message="£{{transaction.value}} spent at {{transaction.merchant}} on {{transaction.date| date:'dd MMM'}}">Send notification to phone</button>
                         </div>
 
                       </li>

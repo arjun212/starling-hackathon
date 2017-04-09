@@ -6,13 +6,9 @@ var socket = require('socket.io-client')('http://mas-starling-rest.herokuapp.com
 var app = angular.module('app', []);
 
 app.controller('appController', function appController($scope, $http) {
-//    request.get('http://localhost:8000/api/random', function (error, response, body) {
-//        $scope.text = body;
-//        $scope.$apply();
-//    }
-
       $scope.transactions = [] ;
       $scope.items = [] ;
+      $scope.updated = "false"; // Doesn't currently work
 
       socket.on('connect', function(){
         console.log( "connected successfully" ) ;
@@ -33,7 +29,9 @@ app.controller('appController', function appController($scope, $http) {
             $scope.items = $scope.items.concat(response.data) ;
           });
         }
+        $scope.updated = "true";
         $scope.$apply() ;
+
       } ) ;
       
 
@@ -41,14 +39,6 @@ app.controller('appController', function appController($scope, $http) {
         console.log( "disconnected successfully" ) ;
 
       } ) ;
-
-
-      $scope.status = {
-        isCustomHeaderOpen: false,
-        isFirstOpen: true,
-        isFirstDisabled: false,
-        oneAtATime: true
-      };
 
     $http.get('http://mas-starling-rest.herokuapp.com/api/getAllTransactions')
     .then(function(response) {
@@ -60,6 +50,12 @@ app.controller('appController', function appController($scope, $http) {
       console.log(response.data);
         $scope.items = $scope.items.concat(response.data);
     });
+});
 
-
+app.controller('analyticsController', function analyticsController($scope, $http) {
+    $http.get('http://mas-starling-rest.herokuapp.com/api/getSumPriceOfProds')
+    .then(function(response) {
+      console.log(response.data);
+        $scope.totalspend = response.data;
+    });
 });
