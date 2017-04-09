@@ -9,7 +9,9 @@ import {DataService} from '../../providers/data-service/data-service';
 
 export class BreakDownPage{
 
-    public products : Array<{product: string, price: string}>
+    public products : Array<{product: string, price: string}>;
+    public merchant : string;
+    public value :string;
     public error : string;
 
     constructor(private _nav: NavController, 
@@ -18,6 +20,8 @@ export class BreakDownPage{
 
     ionViewDidLoad(){
         var id =this._navParams.get('id');
+        this.value = this._navParams.get('value');
+        this.merchant = this._navParams.get('merchant');
         this.getProductBreakdown(id);
     }
 
