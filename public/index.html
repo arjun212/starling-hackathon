@@ -51,7 +51,7 @@
 
                         <div style="margin: 0 auto; text-align: center">
                             <div ng-repeat="item in items| filter:{id: transaction.id}" type="button" class="list-group-item disabled shaded">
-                            {{item.product | capitalize}}
+                            {{item.product}}
                             <span class="badge">£{{item.price}}</span>
                             </div>
                         </div>
