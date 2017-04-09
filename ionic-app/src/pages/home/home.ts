@@ -5,6 +5,7 @@ import * as io from 'socket.io-client';
 import {SocketService} from '../../providers/socket-service/socket-service';
 import {DataService} from '../../providers/data-service/data-service';
 import {BreakDownPage} from '../breakdown/breakdown';
+import {ScanPage} from '../scan/scan';
 
 @Component({
   selector: 'page-home',
@@ -53,6 +54,10 @@ export class HomePage {
         id: id,
         value: value,
         merchant: merchant
+      })
+    } else{
+      this._nav.push(ScanPage, {
+        id : id
       })
       }
     }
