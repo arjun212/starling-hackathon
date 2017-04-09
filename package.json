@@ -12,7 +12,8 @@
     "jquery": "^3.2.1",
     "sync-request" : "4.0.x",
     "angular-bootstrap-npm" : "0.14.x",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "socket.io-client" : "1.7.x"
   },
   "devDependencies": {
     "browserify": "^14.3.0"
