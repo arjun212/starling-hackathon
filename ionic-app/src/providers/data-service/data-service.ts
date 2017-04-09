@@ -1,5 +1,5 @@
 import { Injectable }              from '@angular/core';
-import { Http, Response }          from '@angular/http';
+import { Http, Response, Headers, RequestOptions }          from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -7,7 +7,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
   private heroesUrl = 'http://mas-starling-rest.herokuapp.com/api/getProductsForTx/';  // URL to web API
-  private allTxUrl = 'http://mas-starling-rest.herokuapp.com/api/getAllTransactions'
+  private allTxUrl = 'http://mas-starling-rest.herokuapp.com/api/getAllTransactions';
+  private qrCodeUrl = 'http://mas-starling-rest.herokuapp.com/api/consume/qr';
+
   constructor (private http: Http) {}
 
   getProductsForTransaction(id:string) {
@@ -35,6 +37,18 @@ export class DataService {
           "receipts": data.receipts,
           "date" : data.date} 
         });
+  }
+
+  postQRCodeResult(jsonString : string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    // headers.append('Content-Type', 'application/x-www-form-urlencoded')
+      return this.http.post(
+        this.qrCodeUrl,
+        jsonString,
+        { "headers" : headers }
+      ).map(res => res.status)
+      .catch(this.handleError)
   }
 
 
