@@ -1,12 +1,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Event List</ion-title>
+    <ion-title>Expenditure Breakdown</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
+<h1>{{"You spent " + value + " at " + merchant}}</h1>
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let product of products">

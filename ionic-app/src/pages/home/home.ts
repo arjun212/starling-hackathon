@@ -47,10 +47,14 @@ export class HomePage {
         )
     }
 
-    getBreakDown(id: string){
-      this._nav.push(BreakDownPage, {
+    getBreakDown(id: string, value: string, merchant: string, receipts: boolean){
+      if(receipts){
+        this._nav.push(BreakDownPage, {
         id: id,
+        value: value,
+        merchant: merchant
       })
+      }
     }
 
 }
