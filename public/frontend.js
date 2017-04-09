@@ -1,6 +1,7 @@
 var angular = require ('angular');
+var uib = require ('angular-bootstrap-npm');
 
-var app = angular.module('app', []);
+var app = angular.module('app', [ 'ui.bootstrap' ]);
 
 app.controller('appController', function appController($scope, $http) {
 //    request.get('http://localhost:8000/api/random', function (error, response, body) {
@@ -19,6 +20,13 @@ app.controller('appController', function appController($scope, $http) {
     .then(function(response) {
         $scope.transactions = response.data;
     });
+
+    $http.get('http://mas-starling-rest.herokuapp.com/api/getAllProducts')
+    .then(function(response) {
+      console.log(response.data);
+        $scope.items = response.data;
+    });
+
 
     $scope.items = [
         {
@@ -44,4 +52,5 @@ app.controller('appController', function appController($scope, $http) {
     ];
 
 });
+
 
